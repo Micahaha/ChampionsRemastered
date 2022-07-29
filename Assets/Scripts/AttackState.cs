@@ -88,8 +88,8 @@ public class AttackState : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy Killed");
             enemy = collision.GetComponent<Enemy>();
+            enemy.Damage(20);
         }
     }
 

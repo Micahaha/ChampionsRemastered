@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private HealthBar healthBar;
+    public HealthBar healthBar;
     public GameObject swordObject;
+    HealthSystem healthSystem;
 
     // Start is called before the first frame update
     void Start()
     {
-        HealthSystem healthSystem = new HealthSystem(100);
+        healthSystem = new HealthSystem(100);
         healthBar.Setup(healthSystem);
 
 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(healthSystem.GetHealthPercent());
     }
 
    

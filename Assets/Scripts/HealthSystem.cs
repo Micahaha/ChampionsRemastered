@@ -7,7 +7,11 @@ public class HealthSystem
 {
 
     public event EventHandler OnHealthChanged;
-    public event EventHandler OnDeath;
+    public delegate void OnDamage();
+
+    public static event OnDamage OnDamageTaken;
+
+
 
     float health;
     float healthMax; // Represents total amount the Enemy or entity starts with
@@ -33,6 +37,9 @@ public class HealthSystem
         if(health < 0) health = 0;
 
         if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
+
+        if (OnDamageTaken != null)
+            OnDamageTaken();
     }
 
     public void Heal(int healAmount) 
@@ -43,11 +50,11 @@ public class HealthSystem
 
     }
 
-    public void onDeath() 
+    public void onDeath(GameObject obj) 
     {
         if (health == 0) 
         {
-            if (OnDeath != null) OnDeath(this, EventArgs.Empty);
+            UnityEngine.Object.Destroy(obj);
         }
     }
 }

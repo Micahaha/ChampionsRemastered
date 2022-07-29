@@ -16,11 +16,12 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         
-        healthBarPercent.text += _healthSystem.GetHealth();
+        healthBarPercent.text += _healthSystem.GetHealth() + "%";
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(_healthSystem.GetHealth());
     }
 }
