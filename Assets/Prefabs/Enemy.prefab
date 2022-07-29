@@ -2397,6 +2397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682a2732856b3d244be9e01827f6fe81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ragdollPrefab: {fileID: 3954870414696164242, guid: 34fde8c3577667641ae8f3fb448d9f51, type: 3}
   animator: {fileID: 3838325563333413117}
 --- !u!54 &7218968295809191523
 Rigidbody:

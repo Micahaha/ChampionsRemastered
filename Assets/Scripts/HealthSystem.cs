@@ -7,12 +7,7 @@ public class HealthSystem
 {
 
     public event EventHandler OnHealthChanged;
-    public delegate void OnDamage();
-
-    public static event OnDamage OnDamageTaken;
-
-
-
+     
     float health;
     float healthMax; // Represents total amount the Enemy or entity starts with
     public HealthSystem(float health)
@@ -31,30 +26,18 @@ public class HealthSystem
         return health / healthMax;
     }
 
-    public void Damage(int damageAmount) 
+    public void Damage(int damageAmount)
     {
         health -= damageAmount;
-        if(health < 0) health = 0;
-
+        if (health < 0) health = 0;
         if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
+    } 
 
-        if (OnDamageTaken != null)
-            OnDamageTaken();
-    }
-
-    public void Heal(int healAmount) 
+    public void onDeath(GameObject old_obj) 
     {
-        health += healAmount;
-        if(health > 0) health = healthMax;
-        if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
-
-    }
-
-    public void onDeath(GameObject obj) 
-    {
-        if (health == 0) 
+        if (health == 0)
         {
-            UnityEngine.Object.Destroy(obj);
+            UnityEngine.Object.Destroy(old_obj);
         }
     }
 }

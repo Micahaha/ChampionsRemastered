@@ -5,16 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public HealthSystem enemyHealthSystem;
-    private Animator animator;
-    
+    public GameObject ragdollPrefab;
+    public Animator animator;
 
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
         enemyHealthSystem = new HealthSystem(80);
     }
-
-
 
     // Update is called once per frame
     void Update()
@@ -32,6 +29,12 @@ public class Enemy : MonoBehaviour
     {
         enemyHealthSystem.Damage(damage);
         onHit();
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(ragdollPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        
     }
 
 }
