@@ -21,6 +21,8 @@ public class AttackState : MonoBehaviour
     public float coliderCenterOnAttack;
 
 
+
+    Enemy enemy; 
     public Transform destroyed_Jar;
 
     // Start is called before the first frame update
@@ -86,7 +88,8 @@ public class AttackState : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("hitting Enemy");
+            Debug.Log("Enemy Killed");
+            enemy = collision.GetComponent<Enemy>();
         }
     }
 

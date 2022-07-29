@@ -2,24 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    private HealthBar healthBar;
-    public GameObject swordObject;
+    public float health;
 
     // Start is called before the first frame update
     void Start()
     {
-        HealthSystem healthSystem = new HealthSystem(100);
-        healthBar.Setup(healthSystem);
-
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     }
-
-   
 }
