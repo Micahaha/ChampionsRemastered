@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : MonoBehaviour
+public class EnemyAttackState : MonoBehaviour
 {
     public bool attackState;
-
-    public AnimationStateController animController;
     public Animator animator;
     CapsuleCollider colider;
     float coliderRadius;
@@ -19,12 +17,6 @@ public class AttackState : MonoBehaviour
     public float coliderRadiusOnAttack;
     public float coliderHeightOnAttack;
     public float coliderCenterOnAttack;
-
-
-
-    Enemy enemy; 
-    public Transform destroyed_Jar;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +34,7 @@ public class AttackState : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() 
     {
 
 
@@ -68,41 +60,11 @@ public class AttackState : MonoBehaviour
 
 
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Destructible"))
-        {
-            Debug.Log("Colision detected with: " + collision.gameObject.name);
-            Transform instantiated_jar = Instantiate(destroyed_Jar, collision.transform.position, collision.transform.rotation);
-            Destroy(collision.gameObject);
-            Debug.Log("Destroyed");
-
-            foreach (Transform child in instantiated_jar)
-            {
-                if (child.TryGetComponent(out Rigidbody childRigidBody))
-                {
-                    childRigidBody.AddForce(0, 3f, 0, ForceMode.Impulse);
-                }
-            }
-        }
-
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Player Hitting Enemy");
-            enemy = collision.GetComponent<Enemy>();
-            enemy.Damage(20);
-        }
-    }
+   
 
 
     void checkAttackState() 
     {
-        if (animController.attack == true)
-        {
-            attackState = true;
-            
-        }
-
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
 

@@ -48,8 +48,7 @@ public class AnimationStateController : MonoBehaviour
         bool runPressed = Input.GetKey("left shift");
 
 
-        Debug.Log("Horizontal Axis: " + horizontalMovement);
-        Debug.Log("Vertical Axis: " + verticalMovement);
+
 
 
         // Forward Movement

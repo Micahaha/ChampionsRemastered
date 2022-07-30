@@ -1,26 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public HealthBar healthBar;
-    public GameObject swordObject;
-    HealthSystem healthSystem;
+    public Canvas healthBar;
+    public string healthText;
+    public Player player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        healthSystem = new HealthSystem(100);
-        healthBar.Setup(healthSystem);
-
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        Debug.Log(healthSystem.GetHealthPercent());
+       healthText = "health: " + player.healthSystem.GetHealth();
+       healthBar.GetComponentInChildren<Text>().text = healthText;
+
+
+
+        Debug.Log(player.healthSystem.GetHealth());
+
+        if (player.healthSystem.GetHealth() == 0) 
+        {
+            Debug.Log("Gameover");
+            Destroy(player.gameObject);
+        }
+
     }
 
    
