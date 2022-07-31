@@ -128,16 +128,22 @@ public class EnemyAI : MonoBehaviour
                     Debug.Log("Stopping near Player");
                     transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform.position);
                     transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
-
-                    animator.SetBool(isAttacking, true);
-
                     Stop();
+                    StartCoroutine(AttackDelay());
+
                 }
 
                 //  Wait if the current position is not the player position
                 m_WaitTime -= Time.deltaTime;
             }
         }
+    }
+
+    IEnumerator AttackDelay()
+    {
+        animator.SetBool(isAttacking, true);
+        yield return new WaitForSeconds(.05f);
+        animator.SetBool(isAttacking, false);
     }
 
     private void Patroling()
